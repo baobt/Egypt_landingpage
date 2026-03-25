@@ -18,7 +18,9 @@ function ProductShowcaseSection() {
             <h4>Nhận catalogue & báo giá chi tiết ngay hôm nay</h4>
             <p>Danh mục linh hoạt cho nhập khẩu, phân phối và OEM theo yêu cầu.</p>
           </div>
-          <button className="btn-primary">Yêu cầu báo giá sản phẩm</button>
+          <a className="btn-primary" href="#contact">
+            Yêu cầu báo giá sản phẩm
+          </a>
         </div>
       </div>
     </section>

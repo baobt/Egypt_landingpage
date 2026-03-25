@@ -15,8 +15,12 @@ function HeroSection() {
             Chuyên cung cấp thực phẩm, nông sản &amp; sản phẩm Halal từ Ai Cập về Việt Nam – trọn gói từ sourcing, kiểm định đến phân phối.
           </p>
           <div className="hero__actions">
-            <button className="btn-primary">Nhận báo giá ngay</button>
-            <button className="btn-ghost">Tư vấn miễn phí 1:1</button>
+            <a className="btn-primary" href="#contact">
+              Nhận báo giá ngay
+            </a>
+            <a className="btn-ghost" href="#contact">
+              Tư vấn miễn phí 1:1
+            </a>
           </div>
           <div className="hero__contacts">
             {heroContacts.map(({ icon, text }) => (
