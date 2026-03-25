@@ -1,0 +1,21 @@
+:root {
+  --surface: #131313;
+  --surface-dim: #131313;
+  --surface-low: #1c1b1b;
+  --surface-high: #2a2a2a;
+  --surface-highest: #353534;
+  --surface-lowest: #0e0e0e;
+  --on-surface: #e5e2e1;
+  --on-surface-variant: #d0c5af;
+  --primary: #f2ca50;
+  --primary-container: #d4af37;
+  --on-primary: #3c2f00;
+  --outline-variant: #4d4635;
+  --outline-ghost: rgb(77 70 53 / 15%);
+  --glass-surface: rgb(28 27 27 / 72%);
+  --shadow-ambient: 0 44px 60px rgb(44 38 26 / 6%);
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --space-xl: 7rem;
+  --space-xxl: 8.5rem;
+}
