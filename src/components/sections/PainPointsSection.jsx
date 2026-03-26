@@ -1,16 +1,14 @@
-import { painPoints } from '../../data/content';
-
-function PainPointsSection() {
+function PainPointsSection({ content }) {
   return (
     <section className="section pain-points">
       <div className="container">
         <div className="pain-points__head">
-          <h2 className="section-title">Bạn đang gặp khó khăn khi nhập khẩu hàng?</h2>
+          <h2 className="section-title">{content.title}</h2>
           <div className="pain-points__line" />
         </div>
 
         <div className="pain-points__grid">
-          {painPoints.map(([icon, text]) => (
+          {content.items.map(([icon, text]) => (
             <article key={text} className="pain-points__card">
               <i className="material-symbols-outlined">{icon}</i>
               <p>{text}</p>
@@ -18,7 +16,7 @@ function PainPointsSection() {
           ))}
         </div>
 
-        <p className="pain-points__cta">👉 EgyptViet giúp bạn giải quyết toàn bộ từ A-Z</p>
+        <p className="pain-points__cta">{content.cta}</p>
       </div>
     </section>
   );

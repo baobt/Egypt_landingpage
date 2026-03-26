@@ -35,7 +35,13 @@ img {
 }
 
 .section {
-  padding: clamp(var(--space-xl), 10vw, var(--space-xxl)) 0;
+  padding: clamp(1.0rem, 3.2vw, 2rem) 0;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 1.0rem 0;
+  }
 }
 
 .section[id],

@@ -1,22 +1,22 @@
 import { images } from '../../data/content';
 
-function Footer() {
+function Footer({ content }) {
   return (
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__brand">
           <div className="footer__brand-head">
             <img src={images.logo} alt="EgyptViet logo" className="footer__logo" />
-            <h4>CÔNG TY TNHH EGYPTVIET</h4>
+            <h4>{content.companyName}</h4>
           </div>
           <p>
-            Địa chỉ: 6-8 Đoàn Văn Bơ, TP. Hồ Chí Minh
+            {content.address}
             <br />
-            Email: info@egyptviet.com
+            {content.email}
             <br />
-            Website: egyptviet.com
+            {content.website}
           </p>
-          <small>© 2024 EgyptViet Trade Corridor. All rights reserved.</small>
+          <small>{content.copyright}</small>
         </div>
       </div>
     </footer>

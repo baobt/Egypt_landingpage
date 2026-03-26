@@ -1,14 +1,13 @@
-import { caseStudies } from '../../data/content';
 import SectionHeading from '../common/SectionHeading';
 import CaseStudyCard from '../common/CaseStudyCard';
 
-function CaseStudySection() {
+function CaseStudySection({ content }) {
   return (
     <section className="section case-study">
       <div className="container">
-        <SectionHeading title="📊 Case Study / Kết quả" subtitle="Hàng trăm khách hàng đã lựa chọn EgyptViet" />
+        <SectionHeading title={content.headingTitle} subtitle={content.headingSubtitle} />
         <div className="case-study__grid">
-          {caseStudies.map(([title, desc, result]) => (
+          {content.items.map(([title, desc, result]) => (
             <CaseStudyCard key={title} title={title} desc={desc} result={result} />
           ))}
         </div>

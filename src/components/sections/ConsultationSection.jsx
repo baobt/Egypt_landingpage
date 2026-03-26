@@ -9,7 +9,7 @@ const INITIAL_FORM = {
   message: '',
 };
 
-function ConsultationSection() {
+function ConsultationSection({ content }) {
   const [form, setForm] = useState(INITIAL_FORM);
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,7 +23,7 @@ function ConsultationSection() {
     event.preventDefault();
 
     if (!form.name.trim() || !form.email.trim() || !form.service.trim()) {
-      setStatus({ type: 'error', message: 'Vui lòng nhập Họ tên, Email và chọn Nhu cầu.' });
+      setStatus({ type: 'error', message: content.validationError });
       return;
     }
 
@@ -35,8 +35,8 @@ function ConsultationSection() {
       email: form.email.trim(),
       phone: form.phone.trim(),
       service: form.service,
-      subject: `Lead mới từ EgyptViet - ${form.service}`,
-      message: `Công ty: ${form.company || 'Không cung cấp'}\n${form.message || ''}`.trim(),
+      subject: `${content.leadSubjectPrefix} ${form.service}`,
+      message: `Company: ${form.company || content.companyFallback}\n${form.message || ''}`.trim(),
     };
 
     try {
@@ -58,17 +58,17 @@ function ConsultationSection() {
       try {
         result = JSON.parse(rawBody);
       } catch {
-        throw new Error('Response từ API không phải JSON hợp lệ. Vui lòng kiểm tra log PHP.');
+        throw new Error(content.invalidJsonError);
       }
 
       if (!response.ok || !result.success) {
-        throw new Error(result.message || 'Không gửi được biểu mẫu. Vui lòng thử lại.');
+        throw new Error(result.message || content.submitError);
       }
 
-      setStatus({ type: 'success', message: 'Đăng ký thành công! Chúng tôi sẽ liên hệ bạn trong 24h.' });
+      setStatus({ type: 'success', message: content.successMessage });
       setForm(INITIAL_FORM);
     } catch (error) {
-      setStatus({ type: 'error', message: error.message || 'Có lỗi xảy ra, vui lòng thử lại.' });
+      setStatus({ type: 'error', message: error.message || content.fallbackError });
     } finally {
       setIsSubmitting(false);
     }
@@ -78,47 +78,71 @@ function ConsultationSection() {
     <section id="contact" className="section consultation">
       <div className="container consultation__card">
         <header className="consultation__header">
-          <h2 className="section-title">Nhận tư vấn & báo giá miễn phí</h2>
-          <p>Điền thông tin để được hỗ trợ nhanh nhất. Đội ngũ chuyên gia sẽ liên hệ trong vòng 24h.</p>
+          <h2 className="section-title">{content.title}</h2>
+          <p>{content.subtitle}</p>
         </header>
         <form className="consultation__form" onSubmit={handleSubmit}>
           <label>
-            <span>Họ & tên</span>
-            <input name="name" placeholder="Nguyễn Văn A" type="text" value={form.name} onChange={handleChange} />
+            <span>{content.labels.name}</span>
+            <input
+              name="name"
+              placeholder={content.placeholders.name}
+              type="text"
+              value={form.name}
+              onChange={handleChange}
+            />
           </label>
           <label>
-            <span>Công ty</span>
-            <input name="company" placeholder="Công ty Xuất Nhập Khẩu..." type="text" value={form.company} onChange={handleChange} />
+            <span>{content.labels.company}</span>
+            <input
+              name="company"
+              placeholder={content.placeholders.company}
+              type="text"
+              value={form.company}
+              onChange={handleChange}
+            />
           </label>
           <label>
-            <span>Số điện thoại</span>
-            <input name="phone" placeholder="090 xxx xxxx" type="tel" value={form.phone} onChange={handleChange} />
+            <span>{content.labels.phone}</span>
+            <input
+              name="phone"
+              placeholder={content.placeholders.phone}
+              type="tel"
+              value={form.phone}
+              onChange={handleChange}
+            />
           </label>
           <label>
-            <span>Email</span>
-            <input name="email" placeholder="partner@company.com" type="email" value={form.email} onChange={handleChange} />
+            <span>{content.labels.email}</span>
+            <input
+              name="email"
+              placeholder={content.placeholders.email}
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+            />
           </label>
           <label className="is-wide">
-            <span>Nhu cầu (Nhập khẩu / Halal / Công bố sản phẩm)</span>
+            <span>{content.labels.service}</span>
             <select name="service" value={form.service} onChange={handleChange}>
-              <option value="">-- Chọn nhu cầu --</option>
-              <option value="Nhập khẩu">Nhập khẩu</option>
-              <option value="Halal">Halal</option>
-              <option value="Công bố sản phẩm">Công bố sản phẩm</option>
+              <option value="">{content.options.default}</option>
+              <option value={content.options.import}>{content.options.import}</option>
+              <option value={content.options.halal}>{content.options.halal}</option>
+              <option value={content.options.declaration}>{content.options.declaration}</option>
             </select>
           </label>
           <label className="is-wide">
-            <span>Lời nhắn thêm</span>
+            <span>{content.labels.message}</span>
             <textarea
               name="message"
               rows="4"
-              placeholder="Ví dụ: Tôi cần nhập khẩu Tahini và hỗ trợ công bố sản phẩm..."
+              placeholder={content.placeholders.message}
               value={form.message}
               onChange={handleChange}
             />
           </label>
           <button className="btn-primary is-wide" type="submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Đang gửi...' : '🔥 Nhận báo giá ngay hôm nay'}
+            {isSubmitting ? content.submitLoading : content.submitIdle}
           </button>
           {status.message ? <p className={`consultation__status ${status.type}`}>{status.message}</p> : null}
         </form>

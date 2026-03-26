@@ -23,7 +23,7 @@
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, var(--surface), rgb(19 19 19 / 78%), transparent);
+  background: linear-gradient(90deg, #131313, rgb(19 19 19 / 78%), transparent);
 }
 
 .hero__content {
@@ -129,7 +129,7 @@
 }
 
 .pain-points {
-  background: var(--surface-low);
+  background: var(--surface);
 }
 
 .pain-points__head {
@@ -182,7 +182,7 @@
 }
 
 .intro {
-  background: var(--surface-low);
+  background: var(--surface);
 }
 
 .intro__grid {
@@ -227,7 +227,7 @@
 }
 
 .products {
-  background: var(--surface-lowest);
+  background: var(--surface);
 }
 
 .products__grid {
@@ -335,7 +335,7 @@
 }
 
 .services {
-  background: var(--surface-lowest);
+  background: var(--surface);
 }
 
 .services__grid {
@@ -396,7 +396,7 @@
 
 .workflow {
   position: relative;
-  background: var(--surface-lowest);
+  background: var(--surface);
 }
 
 .workflow__sub {
@@ -479,7 +479,7 @@
 }
 
 .why-choose {
-  background: var(--surface-low);
+  background: var(--surface);
 }
 
 .why-choose__grid {
@@ -567,7 +567,7 @@
 }
 
 .case-study {
-  background: var(--surface-low);
+  background: var(--surface);
 }
 
 .case-study__grid {
@@ -650,11 +650,24 @@
 .consultation__form textarea {
   width: 100%;
   border: none;
-  background: var(--surface-high);
+  background: rgb(255 255 255 / 6%);
   color: var(--on-surface);
   border-radius: var(--radius-sm);
   padding: 1rem;
   outline: none;
+}
+
+.consultation__form select {
+  color: var(--on-surface);
+}
+
+.consultation__form select option {
+  background: var(--surface);
+  color: var(--on-surface);
+}
+
+.consultation__form select option[value=''] {
+  color: var(--on-surface-variant);
 }
 
 .consultation__form input:focus,
@@ -693,7 +706,7 @@
 }
 
 .final-cta {
-  background: var(--surface-low);
+  background: var(--surface);
 }
 
 .final-cta__inner {
@@ -724,7 +737,7 @@
 }
 
 .partner-market {
-  background: var(--surface-lowest);
+  background: var(--surface);
 }
 
 .partner-market__list {

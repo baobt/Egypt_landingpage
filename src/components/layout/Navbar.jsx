@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { images, navLinks } from '../../data/content';
+import { images } from '../../data/content';
 
-function Navbar() {
+function Navbar({ navLinks, ctaFull, ctaCompact, languageLabel, lang, onChangeLang }) {
   const [activeTarget, setActiveTarget] = useState(navLinks[0]?.target ?? '');
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Navbar() {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [navLinks]);
 
   return (
     <nav className="navbar">
@@ -44,8 +44,30 @@ function Navbar() {
             </a>
           ))}
         </div>
-        <a className="btn-primary" href="#contact">
-          Partner With Us
+        <div className="navbar__lang" aria-label={languageLabel} role="group">
+          <button
+            type="button"
+            className={lang === 'vi' ? 'is-active' : ''}
+            onClick={() => onChangeLang('vi')}
+          >
+            VI
+          </button>
+          <button
+            type="button"
+            className={lang === 'en' ? 'is-active' : ''}
+            onClick={() => onChangeLang('en')}
+          >
+            EN
+          </button>
+        </div>
+        <a className="btn-primary navbar__cta" href="#contact">
+          <span className="navbar__cta-label navbar__cta-label--full">{ctaFull}</span>
+          <span className="navbar__cta-label navbar__cta-label--compact">
+            <i className="material-symbols-outlined navbar__cta-icon" aria-hidden="true">
+              handshake
+            </i>
+            {ctaCompact}
+          </span>
         </a>
       </div>
     </nav>
