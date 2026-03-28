@@ -1,7 +1,7 @@
 <?php
 function sendContactMailWithPHPMail(array $data):bool|string {
 
-    $to="bienthaibao111@gmail.com";
+    $to="info@egyptviet.com";
     $subject =$data['subject']??"Thông tin đăng ký dịch vụ";
     $name = $data['name'] ?? '';
     $email = $data['email'] ?? '';

@@ -4,6 +4,7 @@ import HeroSection from './components/sections/HeroSection';
 import PainPointsSection from './components/sections/PainPointsSection';
 import IntroSection from './components/sections/IntroSection';
 import ProductShowcaseSection from './components/sections/ProductShowcaseSection';
+import MediaGallerySection from './components/sections/MediaGallerySection';
 import ServicesSection from './components/sections/ServicesSection';
 import WorkflowSection from './components/sections/WorkflowSection';
 import PartnerMarketSection from './components/sections/PartnerMarketSection';
@@ -41,6 +42,7 @@ function App() {
         <PainPointsSection content={dictionary.painPoints} />
         <IntroSection content={dictionary.intro} />
         <ProductShowcaseSection content={dictionary.productsSection} />
+        <MediaGallerySection content={dictionary.mediaGallerySection} />
         <ServicesSection content={dictionary.servicesSection} />
         <WorkflowSection content={dictionary.workflowSection} />
         <PartnerMarketSection content={dictionary.partnerMarketSection} />

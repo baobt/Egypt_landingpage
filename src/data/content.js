@@ -12,11 +12,33 @@ export const images = {
     'https://lh3.googleusercontent.com/aida-public/AB6AXuB_tBpS9fvTeQkbtgvkxjLu-Rc2gopbMjmf4f065hJKDnAPkhjidbglYr7RqhR1XuXaoRCMGjHzyOvdmiG8qmkodxTEk3920AOkmfxW3ibjk1CtpEeLPKptDJ7K-lTQzdkgzVBAZgHisnn64Wq8HrvdrvAY7-kgXAbtqWla_GaJK_B3Vgmc7LHXhmZ410gZOcrNbQoULAgFYbU3NrUYwJHoG8-J6fkFey4tFY4VPW3bqhoDexV5icqALuMg_NQC0JZRHk-RDIWKn-Q',
   heroSide:
     'https://lh3.googleusercontent.com/aida-public/AB6AXuBL9-ISPneyOTuoZj2zeP9MmEBplKA1deKY64kFy_GvPcQU0daeZL93F0ibYoX0KHOOZ59Kc068cKfn9b_FKWvmhZSUz2LYsLZsTeiYClcBUAzs02XJnXn3ZQyhk8rjEKP7uqqLz4boaAf2GL4tNW5wFM2FcyTEpisXmhgia_-Fg7uS1RpUrJCJIVY28xGMlvGvCnuKOusZ5FtisKkJa6SxdAbwmRlWlROZ_wZXfgzl1oDe8zedeCmmPJaP-ulIEg0dvUD4UsrZBdc',
-  intro:
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuC9313-fgI5zoBml3iUlAayWeSMCXI7WW_PaQoBM9q14hVdJpVmFCQeozBkiYWU8MAD5uKcuBXj9cTE5BTRVKUU3NBOYjtfdVyLqhjsSKu3fkZewHt3OLkbk10QRV4I4TVJJMijbc6cmv8TDqT2ILERyOlTQ2Wv7iiS0t3APj04u_cfAglNO1cEow2yIflApHEpea-V-Lez28B5-FyNahrT10zW5ZShfjeYgTcbaeJpeVUzk5JhU0SRj6XVf2yr9gV1IE3SekTFdTY',
+  intro: new URL('../../images/sanxuat7.jpg', import.meta.url).href,
   whyChoose:
     'https://lh3.googleusercontent.com/aida-public/AB6AXuBSCa2eUz0zdlfbVsl5RefQ0dP05IC4H198usE4rNsNUrZPGhjSB0qrE1Fi4apHWPA1cX_RCEJCXacqAYLtiyIzzQcqM5Lbnm7tofHFsI-LXM4_cnjb3ImtcV7uk65zhQ560Df6w3-qNXO9gA2Cm41d-L37pWau2lkp-k3EsaeI03PJ15b8-sMCVD2T3XO8V_7mHQiu7i9wqCA-qtcQ3_AzKWRsX4WPERzkT7Wcd4ajgJVpbE7J0_5VP8sCzZ1M5_aiYRhJ5xZ1x54',
 };
+
+const galleryImageMap = import.meta.glob('../../images/*.{jpg,jpeg,png,webp}', {
+  eager: true,
+  import: 'default',
+});
+
+const getImageOrder = (path) => {
+  const fileName = path.split('/').pop()?.toLowerCase() || '';
+  const numericPart = fileName.match(/(\d+)/)?.[1];
+  return numericPart ? Number(numericPart) : 0;
+};
+
+const byNaturalOrder = ([a], [b]) => getImageOrder(a) - getImageOrder(b);
+
+export const productGalleryImages = Object.entries(galleryImageMap)
+  .filter(([path]) => /thucpham|thucphham/i.test(path))
+  .sort(byNaturalOrder)
+  .map(([, src]) => src);
+
+export const factoryGalleryImages = Object.entries(galleryImageMap)
+  .filter(([path]) => /sanxuat/i.test(path))
+  .sort(byNaturalOrder)
+  .map(([, src]) => src);
 
 export const heroContacts = [
   { icon: 'call', text: '+84 90 692 7780' },
@@ -32,10 +54,9 @@ export const painPoints = [
 
 export const products = [
   {
-    name: 'Tahini',
-    sub: 'Bơ mè nguyên chất từ nhà máy Ai Cập.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCnWfpQ8ab2IZmlRcoigT0ZFS0ZZuEq0fEx_rAFgDFGTidcH1VkgVEDlugTIr7poQb_RZPPYW9CoJy0er01mcZBHUfyaEawrSiE1DVTfkLmg2apWdPfx7578TTdiTP7Z9Gey34O9O_mxYaCDawQBO1I_DFAfYCU7jtfuDiP3CSwBHjQJ6H-FLpzvzka63BLgLIZuS84tMCyj8g2MKkHPLi64rGER5bOLOGs8AsiOqTaU1Y3ktytedOBiLTkS2--f7pQY64ABXzW9ws',
+    name: 'Cheeses',
+    sub: 'Các dòng phô mai cao cấp phù hợp phân phối và OEM.',
+    image: new URL('../../images/CHEESES.png', import.meta.url).href,
     className: 'is-hero',
   },
   {
@@ -57,11 +78,16 @@ export const products = [
       'https://lh3.googleusercontent.com/aida-public/AB6AXuBLdzntUBFYXbvF0LdqnG5GqTXRiFJRPsEP1QiBO4NWfBDzqTSKB7_Ep1dbsi8_aWDxe6VMRXlxhOywoJy0-rLOxotEIeOhWsGw3xLwRjeyXhIbsicZAEbIQJNFOOwdNWkX5LKBfdAyEO17A125KU8WWKqzyzimsDt-DnxTaCtj4pUKJBtISSwr6jeDnb6im--JPncEcbIAfR5vINSZnx1cENwWM9EfbVJcE8-nI-pDhQ14jkZA5xi3eEoJQoHQ6Y-F76gq-lm1_ic',
   },
   {
+    name: 'Tahini',
+    sub: 'Bơ mè nguyên chất từ nhà máy Ai Cập.',
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCnWfpQ8ab2IZmlRcoigT0ZFS0ZZuEq0fEx_rAFgDFGTidcH1VkgVEDlugTIr7poQb_RZPPYW9CoJy0er01mcZBHUfyaEawrSiE1DVTfkLmg2apWdPfx7578TTdiTP7Z9Gey34O9O_mxYaCDawQBO1I_DFAfYCU7jtfuDiP3CSwBHjQJ6H-FLpzvzka63BLgLIZuS84tMCyj8g2MKkHPLi64rGER5bOLOGs8AsiOqTaU1Y3ktytedOBiLTkS2--f7pQY64ABXzW9ws',
+  },
+  {
     name: 'OEM theo yêu cầu',
     sub: 'Sản xuất theo thương hiệu riêng của bạn.',
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuBSGYoGiQVfntCAxVlR9dml2jyFJFTIyYMJgkwZuueFIVtuuwnrw5VNC3LjPZ8lRH1azQQIw3pG8ikB3xlpMfVEqw3MOARY0BliHp04ddo2lg-Ihp-qECooTZzjGMEzlDr2ZmgejpW0XaArdZAk3Htcnqko5LXERsJPFKzZ3gHJyDNNyw5qy7GVmNVI8V8Q5XouwIJuHaw19jFWdqoK6-bqYn79UuvXHhiyoQajieaLR5owoAt17jf1f8zGsnt-arzeWzAWK0FF-pc',
-    className: 'is-wide',
   },
 ];
 
@@ -207,6 +233,28 @@ export const i18n = {
       ctaText: 'Danh mục linh hoạt cho nhập khẩu, phân phối và OEM theo yêu cầu.',
       ctaButton: 'Yêu cầu báo giá sản phẩm',
     },
+    mediaGallerySection: {
+      sectionId: 'gallery',
+      headingTitle: '📸 Hình ảnh sản phẩm',
+      headingSubtitle: 'Sản phẩm cao cấp và hình ảnh sản xuất thực tế tại nhà máy',
+      initialVisible: 6,
+      showMore: 'Xem thêm ảnh',
+      showLess: 'Thu gọn',
+      groups: {
+        products: {
+          title: 'Sản phẩm cao cấp',
+          description: '',
+          altPrefix: 'Sản phẩm hoàn chỉnh',
+        },
+        factory: {
+          title: 'Hình ảnh tại nhà máy',
+          description: '',
+          altPrefix: 'Nhà máy sản xuất',
+        },
+      },
+      productItems: productGalleryImages,
+      factoryItems: factoryGalleryImages,
+    },
     servicesSection: {
       headingTitle: 'Dịch vụ cốt lõi',
       items: services,
@@ -333,10 +381,9 @@ export const i18n = {
       headingSubtitle: 'Quality supply with direct factory pricing from Egypt',
       items: [
         {
-          name: 'Tahini',
-          sub: 'Pure sesame paste from certified Egyptian factories.',
-          image:
-            'https://lh3.googleusercontent.com/aida-public/AB6AXuCnWfpQ8ab2IZmlRcoigT0ZFS0ZZuEq0fEx_rAFgDFGTidcH1VkgVEDlugTIr7poQb_RZPPYW9CoJy0er01mcZBHUfyaEawrSiE1DVTfkLmg2apWdPfx7578TTdiTP7Z9Gey34O9O_mxYaCDawQBO1I_DFAfYCU7jtfuDiP3CSwBHjQJ6H-FLpzvzka63BLgLIZuS84tMCyj8g2MKkHPLi64rGER5bOLOGs8AsiOqTaU1Y3ktytedOBiLTkS2--f7pQY64ABXzW9ws',
+          name: 'Cheeses',
+          sub: 'Premium cheese lines suitable for distribution and OEM.',
+          image: new URL('../../images/CHEESES.png', import.meta.url).href,
           className: 'is-hero',
         },
         {
@@ -358,16 +405,43 @@ export const i18n = {
             'https://lh3.googleusercontent.com/aida-public/AB6AXuBLdzntUBFYXbvF0LdqnG5GqTXRiFJRPsEP1QiBO4NWfBDzqTSKB7_Ep1dbsi8_aWDxe6VMRXlxhOywoJy0-rLOxotEIeOhWsGw3xLwRjeyXhIbsicZAEbIQJNFOOwdNWkX5LKBfdAyEO17A125KU8WWKqzyzimsDt-DnxTaCtj4pUKJBtISSwr6jeDnb6im--JPncEcbIAfR5vINSZnx1cENwWM9EfbVJcE8-nI-pDhQ14jkZA5xi3eEoJQoHQ6Y-F76gq-lm1_ic',
         },
         {
+          name: 'Tahini',
+          sub: 'Pure sesame paste from certified Egyptian factories.',
+          image:
+            'https://lh3.googleusercontent.com/aida-public/AB6AXuCnWfpQ8ab2IZmlRcoigT0ZFS0ZZuEq0fEx_rAFgDFGTidcH1VkgVEDlugTIr7poQb_RZPPYW9CoJy0er01mcZBHUfyaEawrSiE1DVTfkLmg2apWdPfx7578TTdiTP7Z9Gey34O9O_mxYaCDawQBO1I_DFAfYCU7jtfuDiP3CSwBHjQJ6H-FLpzvzka63BLgLIZuS84tMCyj8g2MKkHPLi64rGER5bOLOGs8AsiOqTaU1Y3ktytedOBiLTkS2--f7pQY64ABXzW9ws',
+        },
+        {
           name: 'OEM on Demand',
           sub: 'Private-label production tailored to your brand.',
           image:
             'https://lh3.googleusercontent.com/aida-public/AB6AXuBSGYoGiQVfntCAxVlR9dml2jyFJFTIyYMJgkwZuueFIVtuuwnrw5VNC3LjPZ8lRH1azQQIw3pG8ikB3xlpMfVEqw3MOARY0BliHp04ddo2lg-Ihp-qECooTZzjGMEzlDr2ZmgejpW0XaArdZAk3Htcnqko5LXERsJPFKzZ3gHJyDNNyw5qy7GVmNVI8V8Q5XouwIJuHaw19jFWdqoK6-bqYn79UuvXHhiyoQajieaLR5owoAt17jf1f8zGsnt-arzeWzAWK0FF-pc',
-          className: 'is-wide',
         },
       ],
       ctaTitle: 'Get catalogue & detailed quotation today',
       ctaText: 'Flexible product categories for import, distribution, and custom OEM.',
       ctaButton: 'Request Product Quote',
+    },
+    mediaGallerySection: {
+      sectionId: 'gallery',
+      headingTitle: '📸 Real Visual Gallery',
+      headingSubtitle: 'Premium products and actual factory production scenes',
+      initialVisible: 6,
+      showMore: 'View more photos',
+      showLess: 'Show less',
+      groups: {
+        products: {
+          title: 'Premium product',
+          description: 'High-quality product shots ready for sales and marketing use.',
+          altPrefix: 'Finished product',
+        },
+        factory: {
+          title: 'Factory Production',
+          description: 'Real factory process images to increase trust and sourcing transparency.',
+          altPrefix: 'Factory production',
+        },
+      },
+      productItems: productGalleryImages,
+      factoryItems: factoryGalleryImages,
     },
     servicesSection: {
       headingTitle: 'Core Services',

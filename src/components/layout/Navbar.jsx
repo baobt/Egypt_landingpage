@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { images } from '../../data/content';
+import vietnamFlag from '../../../icons/vietnam.png';
+import usaFlag from '../../../icons/united-states-of-america.png';
 
 function Navbar({ navLinks, ctaFull, ctaCompact, languageLabel, lang, onChangeLang }) {
   const [activeTarget, setActiveTarget] = useState(navLinks[0]?.target ?? '');
@@ -30,7 +32,6 @@ function Navbar({ navLinks, ctaFull, ctaCompact, languageLabel, lang, onChangeLa
       <div className="container navbar__inner">
         <a className="navbar__brand-wrap" href="#hero" onClick={() => setActiveTarget(navLinks[0]?.target ?? '')}>
           <img src={images.logo} alt="EgyptViet logo" className="navbar__logo" />
-          <strong className="navbar__brand">EgyptViet</strong>
         </a>
         <div className="navbar__links">
           {navLinks.map(({ label, target }) => (
@@ -49,15 +50,19 @@ function Navbar({ navLinks, ctaFull, ctaCompact, languageLabel, lang, onChangeLa
             type="button"
             className={lang === 'vi' ? 'is-active' : ''}
             onClick={() => onChangeLang('vi')}
+            aria-label="Tiếng Việt"
+            title="Tiếng Việt"
           >
-            VI
+            <img src={vietnamFlag} alt="" className="navbar__lang-flag" aria-hidden="true" />
           </button>
           <button
             type="button"
             className={lang === 'en' ? 'is-active' : ''}
             onClick={() => onChangeLang('en')}
+            aria-label="English"
+            title="English"
           >
-            EN
+            <img src={usaFlag} alt="" className="navbar__lang-flag" aria-hidden="true" />
           </button>
         </div>
         <a className="btn-primary navbar__cta" href="#contact">

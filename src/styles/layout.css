@@ -65,12 +65,14 @@
 .navbar__lang button {
   border: 0;
   border-radius: 999px;
-  padding: 0.36rem 0.52rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0.3rem 0.4rem;
   background: transparent;
   color: var(--on-surface-variant);
-  font-size: 0.72rem;
+  font-size: 1rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  line-height: 1;
   cursor: pointer;
   transition: 0.2s ease;
 }
@@ -78,6 +80,15 @@
 .navbar__lang button.is-active {
   background: linear-gradient(135deg, var(--primary), var(--primary-container));
   color: var(--on-primary);
+}
+
+.navbar__lang-flag {
+  display: block;
+  width: 1.35rem;
+  height: 1rem;
+  object-fit: cover;
+  border-radius: 0.15rem;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 30%);
 }
 
 .navbar__cta-label--compact {
